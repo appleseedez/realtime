@@ -14,7 +14,7 @@
 {
 }
 
-//@property (strong,nonatomic) RenderView* view_local;
 @property (strong,nonatomic) RenderView* view_remote;
+@property (retain, nonatomic) IBOutlet UIView *visionView;
 
 @end

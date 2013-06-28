@@ -69,6 +69,9 @@
 		23E9FB8B1761B101009CF542 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E9FB8A1761B101009CF542 /* libstdc++.6.0.9.dylib */; };
 		23E9FB8D1761B112009CF542 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E9FB8C1761B112009CF542 /* QuartzCore.framework */; };
 		23E9FB8F1761B11E009CF542 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E9FB8E1761B11E009CF542 /* CoreImage.framework */; };
+		BA235F5D177D43F60069AB8B /* close-button.png in Resources */ = {isa = PBXBuildFile; fileRef = BA235F5B177D43F60069AB8B /* close-button.png */; };
+		BA235F5E177D43F60069AB8B /* close-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA235F5C177D43F60069AB8B /* close-button@2x.png */; };
+		BA235F61177D45900069AB8B /* FESettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA235F60177D45900069AB8B /* FESettingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -141,6 +144,10 @@
 		23E9FB8A1761B101009CF542 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		23E9FB8C1761B112009CF542 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		23E9FB8E1761B11E009CF542 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		BA235F5B177D43F60069AB8B /* close-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-button.png"; sourceTree = "<group>"; };
+		BA235F5C177D43F60069AB8B /* close-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-button@2x.png"; sourceTree = "<group>"; };
+		BA235F5F177D45900069AB8B /* FESettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FESettingViewController.h; sourceTree = "<group>"; };
+		BA235F60177D45900069AB8B /* FESettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FESettingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +251,7 @@
 		23E9FB1817618505009CF542 /* avDemo */ = {
 			isa = PBXGroup;
 			children = (
+				BA235F5A177D43F60069AB8B /* assets */,
 				23E9FB901761B18D009CF542 /* lib */,
 				23E9FB2117618505009CF542 /* FEAppDelegate.h */,
 				23E9FB2217618505009CF542 /* FEAppDelegate.m */,
@@ -255,6 +263,8 @@
 				23E9FB3617618643009CF542 /* AVInterfaceAPI.h */,
 				2351432C1771530D000C9A2E /* UdpTransportAPI.cpp */,
 				2351432D1771530D000C9A2E /* UdpTransportAPI.h */,
+				BA235F5F177D45900069AB8B /* FESettingViewController.h */,
+				BA235F60177D45900069AB8B /* FESettingViewController.m */,
 			);
 			path = avDemo;
 			sourceTree = "<group>";
@@ -329,6 +339,15 @@
 			name = third_part;
 			sourceTree = "<group>";
 		};
+		BA235F5A177D43F60069AB8B /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				BA235F5B177D43F60069AB8B /* close-button.png */,
+				BA235F5C177D43F60069AB8B /* close-button@2x.png */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -386,6 +405,8 @@
 				23E9FB2717618505009CF542 /* Default@2x.png in Resources */,
 				23E9FB2917618505009CF542 /* Default-568h@2x.png in Resources */,
 				23E9FB2C17618505009CF542 /* MainStoryboard.storyboard in Resources */,
+				BA235F5D177D43F60069AB8B /* close-button.png in Resources */,
+				BA235F5E177D43F60069AB8B /* close-button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +422,7 @@
 				23E9FB2F17618505009CF542 /* FEViewController.m in Sources */,
 				23E9FB3717618643009CF542 /* AVInterfaceAPI.cpp in Sources */,
 				2351432E1771530D000C9A2E /* UdpTransportAPI.cpp in Sources */,
+				BA235F61177D45900069AB8B /* FESettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

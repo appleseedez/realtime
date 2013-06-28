@@ -19,12 +19,13 @@ UIImageView* _pview_local;
     NSInteger videoChannel;// 视频通道
     NSInteger currentCameraOrientation;
     NSInteger cameraId;
+    NSString* _ip;
+
 }
 
 @end
 
 //#define IP "192.168.1.100"
-#define IP "127.0.0.1"
 
 @implementation FEViewController
 
@@ -35,13 +36,12 @@ UIImageView* _pview_local;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    CGRect view1_frame = CGRectMake(self.view.bounds.size.width - 144,
-                                    self.view.bounds.size.height - 192 - 60,
-                                    144,
-                                    192);
-    _pview_local = [[UIImageView alloc] initWithFrame:view1_frame];
-    [_pview_local setBackgroundColor:[UIColor greenColor]];
+    NSUserDefaults* userDefauts = [NSUserDefaults standardUserDefaults];
+    _ip = [userDefauts objectForKey:@"ip"];
+    if (!_ip) {
+        _ip = @"127.0.0.1";
+    }
+    
     
 }
 
@@ -49,29 +49,32 @@ UIImageView* _pview_local;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+ 
+    
 }
 
 - (IBAction)Start:(id)sender
 {
-    //CGRect view1_frame = CGRectMake(self.view.bounds.size.width - 144,
-    //                                self.view.bounds.size.height - 192 - 60,
-    //                                144,
-    //                                192);
-    //self.view_local = [[RenderView alloc] initWithFrame:view1_frame];
-    //[self.view_local setBackgroundColor:[UIColor greenColor]];
-    
+    _ip = [[NSUserDefaults standardUserDefaults] objectForKey:@"ip"];
+    if (!_ip) {
+        _ip = @"127.0.0.1";
+    }
+   [[ [UIAlertView alloc] initWithTitle:@"ip" message:[NSString stringWithFormat:@"ip is : %@",_ip] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil] show];
     CGRect view2_frame = CGRectMake(0,
                                     0,
-                                    self.view.bounds.size.width,
-                                    self.view.bounds.size.height - 60);
+                                    self.visionView.bounds.size.width,
+                                    self.visionView.bounds.size.height);
     self.view_remote = [[RenderView alloc] initWithFrame:view2_frame];
     [self.view_remote setBackgroundColor:[UIColor blueColor]];
+   
+    CGPoint previewFrameAncor = [self.visionView convertPoint: CGPointMake(self.visionView.bounds.size.width - 150, self.visionView.bounds.size.height- 200) toView:self.view];
+    CGRect previewFrame = CGRectMake(previewFrameAncor.x, previewFrameAncor.y, 144, 192);
+    _pview_local = [[UIImageView alloc] initWithFrame:previewFrame];
+    [_pview_local setBackgroundColor:[UIColor greenColor]];
     
+    [self.visionView addSubview:self.view_remote];
+    [self.view sendSubviewToBack:self.visionView];
     [self.view addSubview:_pview_local];
-    [self.view addSubview:self.view_remote];
-    
-    [self.view sendSubviewToBack:_pview_local];
-    [self.view sendSubviewToBack:self.view_remote];
     
 
     pInterfaceApi = new CAVInterfaceAPI();
@@ -91,7 +94,7 @@ UIImageView* _pview_local;
         return;
     }
     
-    pInterfaceApi->SetVoeCommunicationParameters(voiceChannel, 11113, 11113, IP);
+    pInterfaceApi->SetVoeCommunicationParameters(voiceChannel, 11113, 11113, [_ip UTF8String]);
     
     VoEControlParameters param;
     
@@ -130,7 +133,7 @@ UIImageView* _pview_local;
     }
     
     // 设置网络参数
-    pInterfaceApi->SetVieCommunicationParameters(videoChannel, 11111, 11111, IP);
+    pInterfaceApi->SetVieCommunicationParameters(videoChannel, 11111, 11111, [_ip UTF8String]);
     
     // 开启摄像头
     cameraId = pInterfaceApi->StartCamera(144, 192, 25, 1, videoChannel);
@@ -183,4 +186,8 @@ UIImageView* _pview_local;
     return result;
 }
 
+- (void)dealloc {
+    [_visionView release];
+    [super dealloc];
+}
 @end
